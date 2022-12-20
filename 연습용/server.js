@@ -16,7 +16,6 @@ app.use(express.urlencoded( {extended:false} ))
 
 app.use((req, res, next) => {
     req.login = req.query.id
-
 })
 // const boardRouter = require('./router/board.route')
 // const noticeRouter = require('./router/notice.route')

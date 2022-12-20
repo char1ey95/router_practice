@@ -1,41 +1,85 @@
 const express = require('express')
-const PORT = process.env.SERVER_PORT || 3000
-
+const nunjucks = require('nunjucks')
 const app = express()
 
-const nunjucks = require('nunjucks')
+app.use(express.urlencoded({ extended : false }))
+app.use(express.static('public'))
 app.set('view engine', 'html')
 nunjucks.configure('views', {
     express: app,
-    watch: true,
 })
 
-// 미들웨어 영역 시작 ====================================================
 
+// controller
+const items = [
+    {
+        subject: '첫번째 게시물',
+        content: 'content',
+        name: 'name...',
+    }
+]
 
+// router, controller
 app.get('/', (req, res) => {
     res.render('index.html')
 })
 
+// router, controller
 app.get('/list', (req, res) => {
-    // 내부적으로 path.join을 해주기 때문에 이렇게 적는다.
-    res.render('board/list.html')
+
+    res.render('board/list.html', { items })
 })
 
-app.get('/view', (req, res) => {
-    res.render('board/view.html')
-})
-
+// router, controller
 app.get('/write', (req, res) => {
     res.render('board/write.html')
 })
 
-app.get('/modify', (req, res) => {
-    res.render('board/modify.html')
+// router, controller
+app.post('/write', (req, res) => {
+    const { content, subject, name } = req.body
+    items.push({content, subject, name})
+    
+    res.redirect(`view?index=${items.length-1}`)
 })
 
+// router, controller
+app.get('/view', (req, res) => {
+    const { index } = req.query
+    const item = {
+        ...items[index],
+        index,
+    }
 
-// 미들웨어 영역 끝 =====================================================
+    res.render('board/view.html', { item })
+})
+
+// router, controller
+app.get('/modify', (req, res) => {
+    const { index } = req.query
+    const item = {
+        ...items[index],
+        index,
+    }
+    res.render('board/modify.html', { item })
+})
+
+// router, controller
+app.post('/modify', (req, res) => {
+    const { index, subject, content, name } = req.body
+    items[index].subject = subject
+    items[index].content = content
+    items[index].name = name
+
+    res.redirect(`/view?index=${index}`)
+})
+
+// router, controller
+app.get('/delete', (req, res) => {
+    const { index } = req.query
+    items.splice(index, 1)
+    res.redirect('/list')
+})
 
 app.listen(PORT, () => {
     console.log('server start')
