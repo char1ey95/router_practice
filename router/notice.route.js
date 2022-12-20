@@ -12,3 +12,5 @@ router.get('/delete', getController.delete)
 
 router.post('/write', postController.write)
 router.post('/modify', postController.modify)
+
+module.exports = router
