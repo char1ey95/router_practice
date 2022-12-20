@@ -10,11 +10,13 @@ nunjucks.configure('views', {
     watch: true,
 })
 
-
 app.get('/', (req, res) => {
     res.render('index.html')
 })
 
+app.get('/list', (req, res) => {
+
+})
 
 app.listen(PORT, () => {
     console.log('server start')
