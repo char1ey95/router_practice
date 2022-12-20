@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div>
         <h2>modify page</h2>
         <div>
-            <form action="/modify" method="post">
+            <form action="/board/modify" method="post">
                 <input type="hidden" name="index" value="{{item.index}}">
                 <div>제목 : <input type="text" name="subject" value="{{item.subject}}"></div>
                 <div>작성자 : <input type="text" name="name" value="{{item.name}}"></div>
                 <div>
-                    <textarea name="content" >
+                    <textarea name="content">
                         {{item.content}}
                     </textarea>
                 </div>
@@ -24,4 +26,5 @@
         </div>
     </div>
 </body>
+
 </html>
