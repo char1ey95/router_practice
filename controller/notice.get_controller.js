@@ -7,15 +7,15 @@ const items = [
 ]
 
 exports.index = (req, res) => {
-    res.render('index.html')
+    res.render('notice/index.html')
 }
 
 exports.list = (req, res) => {
-    res.render('board/list.html', { items })
+    res.render('notice/list.html', { items })
 }
 
 exports.write = (req, res) => {
-    res.render('board/write.html')
+    res.render('notice/write.html')
 }
 
 exports.view = (req, res) => {
@@ -24,7 +24,7 @@ exports.view = (req, res) => {
         ...items[index],
         index,
     }
-    res.render('board/view.html', { item })
+    res.render('notice/view.html', { item })
 }
 
 exports.modify = (req, res) => {
@@ -33,11 +33,11 @@ exports.modify = (req, res) => {
         ...items[index],
         index,
     }
-    res.render('board/modify.html', { item })
+    res.render('notice/modify.html', { item })
 }
 
 exports.delete = (req, res) => {
     const { index } = req.query
     items.splice(index, 1)
-    res.redirect('/list')
+    res.redirect('notice/list.html')
 }
