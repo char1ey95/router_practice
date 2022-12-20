@@ -11,13 +11,7 @@ nunjucks.configure('views', {
 
 
 // controller
-const items = [
-    {
-        subject: '첫번째 게시물',
-        content: 'content',
-        name: 'name...',
-    }
-]
+
 
 // router, controller
 app.get('/', (req, res) => {
