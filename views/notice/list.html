@@ -21,14 +21,14 @@
             {% for item in items %}
             <tr>
                 <td>{{loop.index}}</td>
-                <td><a href="/view?index={{loop.index-1}}">{{item.subject}}</a></td>
+                <td><a href="/{{path}}/view?index={{loop.index-1}}">{{item.subject}}</a></td>
                 <td>{{item.name}}</td>
                 <td>2022-12-20</td>
                 <td>255</td>
             </tr>
             {% endfor %}
         </table>
-        <a href="/write"> 글 작성하기 </a>
+        <a href="/{{path}}/write"> 글 작성하기 </a>
     </div>
 </body>
 </html>

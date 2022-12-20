@@ -10,7 +10,7 @@
     <div>
         <h2>modify page</h2>
         <div>
-            <form action="/modify" method="post">
+            <form action="/{{path}}/modify" method="post">
                 <input type="hidden" name="index" value="{{item.index}}">
                 <div>제목 : <input type="text" name="subject" value="{{item.subject}}"></div>
                 <div>작성자 : <input type="text" name="name" value="{{item.name}}"></div>
