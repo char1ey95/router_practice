@@ -10,7 +10,7 @@ exports.write = (req, res) => {
     const { content, subject, name } = req.body
     items.push({content, subject, name})
     
-    res.redirect(`notice/view?index=${items.length-1}`)
+    res.redirect(`/notice/view?index=${items.length-1}`)
 }
 
 exports.modify = (req, res) => {
@@ -19,5 +19,5 @@ exports.modify = (req, res) => {
     items[index].content = content
     items[index].name = name
 
-    res.redirect(`notice/view?index=${index}`)
+    res.redirect(`/notice/view?index=${index}`)
 }

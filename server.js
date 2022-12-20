@@ -1,22 +1,17 @@
 const express = require('express')
 const nunjucks = require('nunjucks')
-const { login } = require('./middlewares')
 const app = express()
-const router = require("./router")
+const router = require('./router/index')
 
+app.use(express.urlencoded({ extended : false }))
+app.use(express.static('public'))
 app.set('view engine', 'html')
 nunjucks.configure('views', {
     express: app,
 })
-app.use(express.urlencoded({ extended: false }))
-app.use(express.static('public'))
-
-
-
 
 app.use(router)
 
-
-app.listen(3000, (req, res) => {
+app.listen(3000, () => {
     console.log('server start')
 })
